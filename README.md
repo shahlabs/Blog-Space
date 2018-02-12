@@ -1,2 +1,2 @@
-# Web_Design_Project
+# MEAN Stack Project - Blogging Application
 MEAN Stack project
