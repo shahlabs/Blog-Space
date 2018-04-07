@@ -98,7 +98,7 @@ let passwordLengthChecker = (password) => {
   } else {
     // Check password length
     if (password.length < 8 || password.length > 35) {
-      return false; // Return error if passord length requirement is not met
+      return false; // Return error if password length requirement is not met
     } else {
       return true; // Return password as valid
     }
@@ -156,4 +156,12 @@ const userSchema = new Schema({
 // userSchema.methods.comparePassword = (password) => {
 //   return bcrypt.compareSync(password, this.password); // Return comparison of login password to password in database (true or false)
 // };
+
+userSchema.methods.comparePassword = function (password){
+  if (password == this.password) {
+    return true;
+  } else {
+    return false;
+  }
+};
 module.exports = mongoose.model('User', userSchema);
