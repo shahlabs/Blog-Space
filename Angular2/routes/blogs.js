@@ -104,6 +104,7 @@ module.exports = (router) => {
     =============================================================== */
     router.get('/singleBlog/:id', (req, res) => {
       // Check if id is present in parameters
+      console.log("hey at the backend editing");
       if (!req.params.id) {
         res.json({ success: false, message: 'No blog ID was provided.' }); // Return error message
       } else {

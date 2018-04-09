@@ -40,6 +40,8 @@ getAllBlogs() {
   // Function to get the blog using the id
   getSingleBlog(id) {
     this.createAuthenticationHeaders(); // Create headers
+    console.log("hey i'm here editing");
+    console.log("ID is: " + id);
     return this.http.get(this.domain + 'blogs/singleBlog/' + id, this.options).map(res => res.json());
   }
 
