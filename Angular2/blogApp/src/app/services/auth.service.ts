@@ -62,13 +62,6 @@ export class AuthService {
         localStorage.clear(); // Clear local storage
       }
 
-    // Function to logout
-    // logout() {
-    //   this.authToken = null; // Set token to null
-    //   this.user = null; // Set user to null
-    //   localStorage.clear(); // Clear local storage
-    // }
-
     // Function to store user's data in client local storage
     storeUserData(token, user) {
        localStorage.setItem('token', token); // Set token in local storage
@@ -81,6 +74,12 @@ export class AuthService {
   getProfile() {
     this.createAuthenticationHeaders(); // Create headers before sending to API
     return this.http.get(this.domain + 'authentication/profile', this.options).map(res => res.json());
+  }
+
+  // Function to get public profile data
+  getPublicProfile(username) {
+    this.createAuthenticationHeaders(); // Create headers before sending to API
+    return this.http.get(this.domain + 'authentication/publicProfile/' + username, this.options).map(res => res.json());
   }
 
   // Function to check if user is logged in
