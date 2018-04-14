@@ -1,3 +1,8 @@
+<div class="jumbotron vertical-center">
+  <div class="container">
+    <div class="row">
+      <div class="offset-md-3 col-md-5 col-sm-6">
+    
 <h1 class="page-header" style="margin-top: 60px;">Login Page</h1>
 
 <!-- Custom Success/Error Message -->
@@ -14,7 +19,7 @@
   <div class="form-group">
     <label for="username">Username</label>
     <div [ngClass]="{'has-error': form.controls.username.errors && form.controls.username.dirty, 'has-success': form.controls.username.valid && form.controls.username.dirty }">
-      <input class="form-control" type="text" name="username" formControlName="username" />
+      <input class="form-control" type="text" name="username" placeholder="Username" formControlName="username" />
       <!-- Validation -->
       <ul class="help-block">
         <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required.</li>
@@ -26,7 +31,7 @@
   <div class="form-group">
     <label for="password">Password</label>
     <div [ngClass]="{'has-error': form.controls.password.errors && form.controls.password.dirty, 'has-success': form.controls.password.valid && form.controls.password.dirty }">
-      <input class="form-control" type="password" name="password" formControlName="password" />
+      <input class="form-control" type="password" name="password" placeholder="Password" formControlName="password" />
       <!-- Validation -->
       <ul class="help-block">
         <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required.</li>
@@ -34,5 +39,10 @@
     </div>
   </div>
   <!-- Submit Button -->
-  <input [disabled]="!form.valid || processing" class="btn btn-primary" type="submit" value="Login" />
+  <input [disabled]="!form.valid || processing" class="btn btn-primary buttonClass" type="submit" value="Login" />
+  <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </form>
+</div>
+</div>
+</div>
+</div>

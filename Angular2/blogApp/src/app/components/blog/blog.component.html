@@ -1,3 +1,8 @@
+<div class="jumbotron vertical-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+
 <h1 class="page-header" style="margin-top: 60px;">Blog Feed</h1>
 <!-- Custom Success/Error Message -->
 
@@ -9,16 +14,16 @@
 </div>
 
 <!-- New Post Button -->
-<button type="button" name="button" class="btn btn-warning" *ngIf="!newPost" (click)="newBlogForm()">New Post</button>
+<button type="button" name="button" class="btn btn-primary" *ngIf="!newPost" (click)="newBlogForm()">New Post</button>
 
 <!-- Reload Button -->
 <button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Reload</button>
 
 <br />
 <br />
-
 <!-- New Blog Form -->
 <form [formGroup]="form" name="blogForm" (submit)="onBlogSubmit()" *ngIf="newPost">
+    <br />
   <!-- Title Input -->
   <div class="form-group">
     <label for="title">Title</label>
@@ -69,14 +74,14 @@
 
     <!-- Panel Footer Start -->
     <div class="panel-footer">
-      <strong>Posted by: </strong>{{ blog.createdBy }}
+      <small><strong>Posted by: {{ blog.createdBy }}</strong></small>
       <br />
-      <strong>Date: </strong>{{ blog.createdAt | date:'MMM dd, yyyy' }}
+      <small><strong>Date: {{ blog.createdAt | date:'MMM dd, yyyy' }}</strong></small>
       <br />
       <div *ngIf="username === blog.createdBy">
-        <strong>Likes: </strong>{{ blog.likes }}
+        <small><strong>Likes: {{ blog.likes }}</strong></small>
         <br />
-        <strong>Dislikes: </strong>{{ blog.dislikes }}
+        <small><strong>Dislikes: {{ blog.dislikes }}</strong></small>
       </div>
 
       <!-- Edit Button -->
@@ -116,8 +121,7 @@
     <ul class="list-group">
       <li class="list-group-item">
         <!-- Post Comment Button -->
-        <button type="button" name="button" class="btn btn-sm btn-danger" (click)="draftComment(blog._id)" [disabled]="newComment.indexOf(blog._id) > -1">Post Comment</button>
-        <br />
+        <button type="button" name="button" class="btn btn-sm btn-info" (click)="draftComment(blog._id)" [disabled]="newComment.indexOf(blog._id) > -1">Post Comment</button>
         <br />
         <div *ngIf="newComment.indexOf(blog._id) > -1">
 
@@ -144,7 +148,7 @@
         <!-- Show Comments -->
         <li *ngIf="enabledComments.indexOf(blog._id) === -1 && blog.comments.length > 0" class="list-group-item">
           <span (click)="expand(blog._id)">
-            Show comments&nbsp;&nbsp;
+            Show comments
             <div class="glyphicon glyphicon-comment"></div>
           </span>
         </li>
@@ -152,7 +156,7 @@
         <!-- Hide Comments -->
         <li *ngIf="enabledComments.indexOf(blog._id) > -1" class="list-group-item">
           <span (click)="collapse(blog._id)">
-            Hide Comments&nbsp;&nbsp;
+            Hide Comments
             <div class="glyphicon glyphicon-comment"></div>
           </span>
         </li>
@@ -160,13 +164,18 @@
         <!-- Comment -->
         <div *ngIf="enabledComments.indexOf(blog._id) > -1">
           <li *ngFor="let comment of blog.comments" class="list-group-item">
-            <strong>{{ comment.commentator }}:</strong> {{ comment.comment }}
+            <small><strong>{{ comment.commentator }}:</strong> {{ comment.comment }}</small>
           </li>
         </div>
     </ul>
+    <br /><br />
     <!-- Post Comment Box: End -->
 
   </div>
   <!-- Panel Outer Layer -->
 </div>
 <!-- Panel End -->
+</div>
+</div>
+</div>
+</div>

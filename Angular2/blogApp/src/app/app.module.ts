@@ -20,6 +20,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { EditBlogComponent } from './components/blog/edit-blog/edit-blog.component';
 import { DeleteBlogComponent } from './components/blog/delete-blog/delete-blog.component';
 import { PublicProfileComponent } from './components/public-profile/public-profile.component';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { PublicProfileComponent } from './components/public-profile/public-profi
     HttpModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    Ng2CarouselamosModule,
+    BrowserAnimationsModule
     //FlashMessagesModule
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, BlogService],
