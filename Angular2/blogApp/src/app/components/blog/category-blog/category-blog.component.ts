@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { BlogService } from '../../../services/blog.service';
 
 @Component({
@@ -28,12 +28,7 @@ export class CategoryBlogComponent implements OnInit {
 
 
   // Function to show blogs based on category
-  getBlogsBasedOnCategory() {
-    this.currentUrl = this.activatedRoute.snapshot.params;
-    console.log("category url " + this.currentUrl);
-  // Function to GET all blogs from database based on category
-    var category = this.currentUrl.categorySelected;
-    console.log("category" + category);
+  getBlogsBasedOnCategory(category) {
     this.blogService.getBlogsBasedOnCategory(category).subscribe(data => {
     this.blogPosts = data.blogs;
     console.log(this.blogPosts);// Assign array to use in HTML
@@ -111,8 +106,10 @@ export class CategoryBlogComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.getBlogsBasedOnCategory();
+  this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+  let category = params.get('categorySelected');
+  this.getBlogsBasedOnCategory(category);
+  })
   }
 
 }
