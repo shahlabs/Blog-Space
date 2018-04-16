@@ -46,7 +46,8 @@ export class BlogComponent implements OnInit {
         Validators.required,
         Validators.maxLength(500),
         Validators.minLength(5)
-      ])]
+      ])],
+      category: ['',Validators.required]
     })
   }
 
@@ -128,14 +129,15 @@ export class BlogComponent implements OnInit {
   onBlogSubmit() {
     this.processing = true; // Disable submit button
     this.disableFormNewBlogForm(); // Lock form
-
+    console.log("submit blog");
     // Create blog object from form fields
     const blog = {
       title: this.form.get('title').value, // Title field
       body: this.form.get('body').value, // Body field
-      createdBy: this.username // CreatedBy field
+      createdBy: this.username, // CreatedBy field
+      categories: this.form.get('category').value // Category field
     }
-
+    console.log("category" + this.form.get('category').value);
     // Function to save blog into database
     this.blogService.newBlog(blog).subscribe(data => {
       // Check if blog was saved to database or not

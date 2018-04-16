@@ -22,6 +22,7 @@ import { DeleteBlogComponent } from './components/blog/delete-blog/delete-blog.c
 import { PublicProfileComponent } from './components/public-profile/public-profile.component';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoryBlogComponent } from './components/blog/category-blog/category-blog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BlogComponent,
     EditBlogComponent,
     DeleteBlogComponent,
-    PublicProfileComponent
+    PublicProfileComponent,
+    CategoryBlogComponent
   ],
   imports: [
     BrowserModule,

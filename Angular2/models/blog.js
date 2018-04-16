@@ -104,6 +104,7 @@ const blogSchema = new Schema({
   likedBy: { type: Array },
   dislikes: { type: Number, default: 0 },
   dislikedBy: { type: Array },
+  categories: { type: String, default: "world"},
   comments: [{
     comment: { type: String, validate: commentValidators },
     commentator: { type: String }

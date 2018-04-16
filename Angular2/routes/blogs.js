@@ -26,7 +26,8 @@ module.exports = (router) => {
           const blog = new Blog({
             title: req.body.title, // Title field
             body: req.body.body, // Body field
-            createdBy: req.body.createdBy // CreatedBy field
+            createdBy: req.body.createdBy,
+            categories: req.body.categories // CreatedBy field
           });
           // Save blog into database
           blog.save((err) => {
@@ -73,6 +74,31 @@ module.exports = (router) => {
           res.json({ success: false, message: 'No blogs found.' }); // Return error of no blogs found
         } else {
           res.json({ success: true, blogs: blogs }); // Return success and blogs array
+        }
+      }
+    }).sort({ '_id': -1 }); // Sort blogs from newest to oldest
+  });
+
+  /* ===============================================================
+     GET ALL BLOGS based on category
+  =============================================================== */
+  router.get('/blogsCategory/:category', (req, res) => {
+    // Search database for all blog posts
+    console.log("backend category" + req.params.category);
+    Blog.find({ categories: req.params.category}, (err, blogs) => {
+      // Check if error was found or not
+      console.log("backend checking categories man");
+      if (err) {
+        res.json({ success: false, message: err });
+        console.log("Error babes")// Return error message
+      } else {
+        // Check if blogs were found in database
+        if (!blogs) {
+          res.json({ success: false, message: 'No blogs found.' }); // Return error of no blogs found
+        } else {
+          console.log("yo there are blogs")
+          res.json({ success: true, blogs: blogs });
+           // Return success and blogs array
         }
       }
     }).sort({ '_id': -1 }); // Sort blogs from newest to oldest
@@ -301,7 +327,7 @@ module.exports = (router) => {
                           }
                         });
                       } else {
-                        blog.likes++; 
+                        blog.likes++;
                         blog.likedBy.push(user.username);
                         blog.save((err) => {
                           if (err) {
