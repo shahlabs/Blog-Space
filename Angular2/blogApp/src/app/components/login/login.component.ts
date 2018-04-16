@@ -74,12 +74,12 @@ enableForm() {
        this.message = data.message; // Set success message
        // Function to store user's token in client local storage
        this.authService.storeUserData(data.token, data.user);
-       // After 2 seconds, redirect to dashboard page
+       // After 2 seconds, redirect to profile page
        setTimeout(() => {
           if (this.previousUrl) {
                    this.router.navigate([this.previousUrl]); // Redirect to page they were trying to view before
                  } else {
-                   this.router.navigate(['/dashboard']); // Navigate to dashboard view
+                   this.router.navigate(['/profile']); // Navigate to profile view
                  }
        }, 2000);
      }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { BlogService } from '../../../services/blog.service';
 
@@ -20,11 +21,15 @@ export class CategoryBlogComponent implements OnInit {
   enabledComments = [];
   blogPosts;
   currentUrl;
+  category;
+
   constructor(
+    private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private blogService: BlogService,
     private router: Router
-  ) { }
+  ) { this.createCommentForm();
+   }
 
 
   // Function to show blogs based on category
@@ -35,26 +40,28 @@ export class CategoryBlogComponent implements OnInit {
     });
   }
 
-
+// Create form for posting comments
+  createCommentForm() {
+    this.commentForm = this.formBuilder.group({
+      comment: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(200)
+      ])]
+    })
+  }
 
   // Function to go back to previous page
   goBack() {
     window.location.reload(); // Clear all variable states
   }
 
-  // Function to get all blogs from the database
-  getAllBlogs() {
-    // Function to GET all blogs from database
-    this.blogService.getAllBlogs().subscribe(data => {
-    this.blogPosts = data.blogs; // Assign array to use in HTML
-    });
-  }
 
   // Function to like a blog post
   likeBlog(id) {
     // Service to like a blog post
     this.blogService.likeBlog(id).subscribe(data => {
-      this.getAllBlogs(); // Refresh blogs after like
+      this.getBlogsBasedOnCategory(this.category); // Refresh blogs after like
     });
   }
 
@@ -62,7 +69,7 @@ export class CategoryBlogComponent implements OnInit {
   dislikeBlog(id) {
     // Service to dislike a blog post
     this.blogService.dislikeBlog(id).subscribe(data => {
-      this.getAllBlogs(); // Refresh blogs after dislike
+      this.getBlogsBasedOnCategory(this.category); // Refresh blogs after dislike
     });
   }
 
@@ -73,7 +80,7 @@ export class CategoryBlogComponent implements OnInit {
     const comment = this.commentForm.get('comment').value; // Get the comment value to pass to service function
     // Function to save the comment to the database
     this.blogService.postComment(id, comment).subscribe(data => {
-      this.getAllBlogs(); // Refresh all blogs to reflect the new comment
+      this.getBlogsBasedOnCategory(this.category); // Refresh all blogs to reflect the new comment
       const index = this.newComment.indexOf(id); // Get the index of the blog id to remove from array
       this.newComment.splice(index, 1); // Remove id from the array
       this.enableCommentForm(); // Re-enable the form
@@ -83,6 +90,14 @@ export class CategoryBlogComponent implements OnInit {
     });
   }
 
+ cancelSubmission(id) {
+    const index = this.newComment.indexOf(id); // Check the index of the blog post in the array
+    this.newComment.splice(index, 1); // Remove the id from the array to cancel post submission
+    this.commentForm.reset(); // Reset  the form after cancellation
+    this.enableCommentForm(); // Enable the form after cancellation
+    this.processing = false; // Enable any buttons that were locked
+  }
+  
   // Expand the list of comments
   expand(id) {
     this.enabledComments.push(id); // Add the current blog post id to array
@@ -94,6 +109,12 @@ export class CategoryBlogComponent implements OnInit {
     this.enabledComments.splice(index, 1); // Remove id from array
   }
 
+// Function to post a new comment on blog post
+  draftComment(id) {
+    this.commentForm.reset(); // Reset the comment form each time users starts a new comment
+    this.newComment = []; // Clear array so only one post can be commented on at a time
+    this.newComment.push(id); // Add the post that is being commented on to the array
+  }
 
   // Enable the comment form
   enableCommentForm() {
@@ -107,8 +128,8 @@ export class CategoryBlogComponent implements OnInit {
 
   ngOnInit() {
   this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-  let category = params.get('categorySelected');
-  this.getBlogsBasedOnCategory(category);
+  this.category = params.get('categorySelected');
+  this.getBlogsBasedOnCategory(this.category);
   })
   }
 
