@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-xs-12">
 
-<h1 class="page-header" style="margin-top: 60px;">Blog Feed</h1>
+<h1 class="page-header" style="margin-top: 20px;">Blog Feed</h1>
 <!-- Custom Success/Error Message -->
 
 <!-- Custom Success/Error Message -->
@@ -74,18 +74,20 @@
   <!-- Panel Outer Layer -->
   <div class="panel panel-primary" *ngFor="let blog of blogPosts">
 
-    <!-- Panel Title -->
-    <div class="panel-heading">
-      <h3 class="panel-title">{{ blog.title }}</h3>
+    <div class="card">
+        <div class="container">
+    <!-- Card Title -->
+    <div class="card-header">
+        <h2>{{ blog.title }}</h2>
     </div>
 
-    <!-- Panel Body -->
-    <div class="panel-body">
-      {{ blog.body }}
-    </div>
+    <!-- Card Body -->
+    <div class="card-body"><p class="card-text">
+        {{ blog.body }}
+      </p></div>
 
     <!-- Panel Footer Start -->
-    <div class="panel-footer">
+    <div class="card-footer">
       <small><strong>Posted by: {{ blog.createdBy }}</strong></small>
       <br />
       <small><strong>Date: {{ blog.createdAt | date:'MMM dd, yyyy' }}</strong></small>
@@ -126,7 +128,7 @@
         </div>
       </div>
 
-    </div>
+    
     <!-- Panel Footer End -->
 
       <!-- Post Comment Box: Start -->
@@ -180,9 +182,13 @@
           </li>
         </div>
     </ul>
-    <br /><br />
+  </div>
+   
+  
     <!-- Post Comment Box: End -->
-
+    </div> <!--Container div ends here-->
+    </div> <!--Card div ends-->
+    <br/>
   </div>
   <!-- Panel Outer Layer -->
 </div>
