@@ -12,6 +12,7 @@ import { NotAuthGuard } from './guards/notAuth.guard';
 import { EditBlogComponent } from './components/blog/edit-blog/edit-blog.component'
 import { DeleteBlogComponent } from './components/blog/delete-blog/delete-blog.component';
 import { CategoryBlogComponent } from './components/blog/category-blog/category-blog.component';
+import { AboutBlogSpaceComponent } from './components/about-blog-space/about-blog-space.component';
 
 const appRoutes: Routes = [
   {
@@ -65,6 +66,10 @@ const appRoutes: Routes = [
     path: 'category-blog/:categorySelected',
     component: CategoryBlogComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'about',
+    component: AboutBlogSpaceComponent
   }
   //{ path: '**', component: HomeComponent }
 ];

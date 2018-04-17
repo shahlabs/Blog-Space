@@ -24,6 +24,7 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryBlogComponent } from './components/blog/category-blog/category-blog.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AboutBlogSpaceComponent } from './components/about-blog-space/about-blog-space.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FooterComponent } from './components/footer/footer.component';
     DeleteBlogComponent,
     PublicProfileComponent,
     CategoryBlogComponent,
-    FooterComponent
+    FooterComponent,
+    AboutBlogSpaceComponent
   ],
   imports: [
     BrowserModule,
