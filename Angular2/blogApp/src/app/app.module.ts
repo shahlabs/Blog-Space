@@ -23,6 +23,7 @@ import { PublicProfileComponent } from './components/public-profile/public-profi
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryBlogComponent } from './components/blog/category-blog/category-blog.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CategoryBlogComponent } from './components/blog/category-blog/category-
     EditBlogComponent,
     DeleteBlogComponent,
     PublicProfileComponent,
-    CategoryBlogComponent
+    CategoryBlogComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
