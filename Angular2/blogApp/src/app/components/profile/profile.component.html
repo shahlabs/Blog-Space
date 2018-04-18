@@ -4,5 +4,12 @@
 
 <h5>Username: {{username}} </h5>
 <h5>Email: {{email}} </h5>
+
+<h5><label for="aboutUser">About User:</label></h5>
+<br/>
+<textarea name="aboutUser" rows="7" cols="90" [(ngModel)]="aboutUser">{{aboutUser}}</textarea>
+<br/>
+<button type="saveButton" name="saveButton" class="btn btn-sm btn-info" (click)="saveAboutUser(aboutUser)">Save</button>
+
 </div>
 </div>

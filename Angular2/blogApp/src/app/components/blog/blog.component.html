@@ -88,6 +88,8 @@
 
     <!-- Panel Footer Start -->
     <div class="card-footer">
+      <small><strong>Category: {{ blog.categories }}</strong></small>
+      <br />
       <small><strong>Posted by: {{ blog.createdBy }}</strong></small>
       <br />
       <small><strong>Date: {{ blog.createdAt | date:'MMM dd, yyyy' }}</strong></small>
@@ -128,7 +130,7 @@
         </div>
       </div>
 
-    
+
     <!-- Panel Footer End -->
 
       <!-- Post Comment Box: Start -->
@@ -183,8 +185,8 @@
         </div>
     </ul>
   </div>
-   
-  
+
+
     <!-- Post Comment Box: End -->
     </div> <!--Container div ends here-->
     </div> <!--Card div ends-->
