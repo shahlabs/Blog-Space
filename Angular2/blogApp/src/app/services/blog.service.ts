@@ -23,6 +23,7 @@ export class BlogService {
         'authorization': this.authService.authToken // Attach token
       })
     });
+    this.options.withCredentials = true;
   }
 
   // Function to create a new blog post
@@ -75,6 +76,12 @@ getBlogsBasedOnCategory(category){
    return this.http.put(this.domain + 'blogs/dislikeBlog/', blogData, this.options).map(res => res.json());
  }
 
+ saveAboutUser(aboutUser){
+   this.createAuthenticationHeaders();
+   console.log("Inside service - save bout user  " + aboutUser);// Create headers
+   return this.http.get(this.domain + 'blogs/saveAboutUser/' + aboutUser, this.options).map(res => res.json());
+
+ }
  // Function to post a comment on a blog post
  postComment(id, comment) {
    this.createAuthenticationHeaders(); // Create headers
