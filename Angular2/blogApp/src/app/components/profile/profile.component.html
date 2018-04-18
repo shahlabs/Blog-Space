@@ -1,13 +1,15 @@
 <div class="jumbotron vertical-center">
         <div class="container">
 <h1 class="page-header" style="margin-top: 60px;">Profile</h1>
-
+<div [ngClass]="messageClass">
+  {{ message }}
+</div>
 <h5>Username: {{username}} </h5>
 <h5>Email: {{email}} </h5>
 
-<h5><label for="aboutUser">About User:</label></h5>
+<h5><label for="aboutUser">About User: </label> {{aboutUser}}</h5>
 <br/>
-<textarea name="aboutUser" rows="7" cols="90" [(ngModel)]="aboutUser">{{aboutUser}}</textarea>
+<textarea name="aboutUser" rows="7" cols="90" [(ngModel)]="aboutUser"></textarea>
 <br/>
 <button type="saveButton" name="saveButton" class="btn btn-sm btn-info" (click)="saveAboutUser(aboutUser)">Save</button>
 
