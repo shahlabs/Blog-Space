@@ -191,7 +191,7 @@ module.exports = (router) => {
    =============================================================== */
    router.get('/profile', (req, res) => {
      // Search for user in database
-     User.findOne({ _id: req.decoded.userId }).select('username email').exec((err, user) => {
+     User.findOne({ _id: req.decoded.userId }).select('username email aboutUser').exec((err, user) => {
        // Check if error connecting
        if (err) {
          res.json({ success: false, message: err }); // Return error
@@ -215,7 +215,7 @@ module.exports = (router) => {
       res.json({ success: false, message: 'No username was provided' }); // Return error message
     } else {
       // Check the database for username
-      User.findOne({ username: req.params.username }).select('username email').exec((err, user) => {
+      User.findOne({ username: req.params.username }).select('username email aboutUser').exec((err, user) => {
         // Check if error was found
         if (err) {
           res.json({ success: false, message: 'Something went wrong.' }); // Return error message
