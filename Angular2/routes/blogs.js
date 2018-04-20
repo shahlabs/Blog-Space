@@ -104,27 +104,6 @@ module.exports = (router) => {
     }).sort({ '_id': -1 }); // Sort blogs from newest to oldest
   });
 
-
-    /* ===============================================================
-       GET ALL BLOGS
-    =============================================================== */
-    router.get('/allBlogs', (req, res) => {
-      // Search database for all blog posts
-      Blog.find({}, (err, blogs) => {
-        // Check if error was found or not
-        if (err) {
-          res.json({ success: false, message: err }); // Return error message
-        } else {
-          // Check if blogs were found in database
-          if (!blogs) {
-            res.json({ success: false, message: 'No blogs found.' }); // Return error of no blogs found
-          } else {
-            res.json({ success: true, blogs: blogs }); // Return success and blogs array
-          }
-        }
-      }).sort({ '_id': -1 }); // Sort blogs from newest to oldest
-    });
-
     /* ===============================================================
        GET SINGLE BLOG
     =============================================================== */
@@ -478,6 +457,42 @@ module.exports = (router) => {
         });
       }
     }
+  });
+/* ===============================================================
+     Save AboutUser Data
+  =============================================================== */
+
+  router.get('/saveAboutUser/:aboutUser', (req, res) => {
+    console.log("Request -- " + req.query);
+    console.log("For saving about user -- " + req.decoded.userId);
+    console.log(" aboutUser "+ req.params.aboutUser);
+    User.findOne({ _id: req.decoded.userId } , (err, user1) => {
+
+      if (err) {
+        res.json({ success: false, message: 'Something went wrong' }); // Return error message
+      } else {
+        // Check if user was found in the database
+        if (!user1) {
+          res.json({ success: false, message: 'Username not found! Cannot update the userdata' }); // Return error message
+        } else {
+          console.log("Yay! we got the user");
+          user1.aboutUser = req.params.aboutUser;
+          user1.save((err) => {
+            if (err) {
+              if (err.errors) {
+                res.json({ success: false, message: 'Please ensure form is filled out properly' });
+              } else {
+                res.json({ success: false, message: err }); // Return error message
+              }
+            } else {
+              res.json({ success: true, message: 'User Profile Data Updated!' }); // Return success message
+            }
+          });
+        //  res.json({ success: true, user: user }); // Return the public user's profile data
+        }
+      }
+    });
+
   });
 
   return router;
