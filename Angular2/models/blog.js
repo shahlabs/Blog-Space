@@ -37,7 +37,7 @@ const titleValidators = [
   // First Title Validator
   {
     validator: titleLengthChecker,
-    message: 'Title must be more than 5 characters but no more than 500'
+    message: 'Title must be more than 5 characters but no more than 500!'
   },
   // Second Title Validator
   {
@@ -66,7 +66,7 @@ const bodyValidators = [
   // First Body validator
   {
     validator: bodyLengthChecker,
-    message: 'Body must be more than 5 characters but no more than 5000.'
+    message: 'Body must be more than 5 characters but no more than 5000!'
   }
 ];
 
