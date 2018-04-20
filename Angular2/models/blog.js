@@ -12,7 +12,7 @@ let titleLengthChecker = (title) => {
     return false; // Return error
   } else {
     // Check the length of title
-    if (title.length < 5 || title.length > 50) {
+    if (title.length < 5 || title.length > 500) {
       return false; // Return error if not within proper length
     } else {
       return true; // Return as valid title
@@ -37,7 +37,7 @@ const titleValidators = [
   // First Title Validator
   {
     validator: titleLengthChecker,
-    message: 'Title must be more than 5 characters but no more than 50'
+    message: 'Title must be more than 5 characters but no more than 500'
   },
   // Second Title Validator
   {
@@ -53,7 +53,7 @@ let bodyLengthChecker = (body) => {
     return false; // Return error
   } else {
     // Check length of body
-    if (body.length < 5 || body.length > 500) {
+    if (body.length < 5 || body.length > 5000) {
       return false; // Return error if does not meet length requirement
     } else {
       return true; // Return as valid body
@@ -66,7 +66,7 @@ const bodyValidators = [
   // First Body validator
   {
     validator: bodyLengthChecker,
-    message: 'Body must be more than 5 characters but no more than 500.'
+    message: 'Body must be more than 5 characters but no more than 5000.'
   }
 ];
 
