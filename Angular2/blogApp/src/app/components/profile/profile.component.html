@@ -1,6 +1,7 @@
 <div class="jumbotron vertical-center">
         <div class="container">
-<h1 class="page-header" style="margin-top: 60px;">Profile</h1>
+            <div class="col-md-8 col-xs-12">
+<h1 class="page-header" style="margin-top: 20px;">Profile</h1>
 <div [ngClass]="messageClass">
   {{ message }}
 </div>
@@ -9,9 +10,10 @@
 
 <h5><label for="aboutUser">About User: </label> {{aboutUser}}</h5>
 <br/>
-<textarea name="aboutUser" rows="7" cols="90" [(ngModel)]="aboutUser"></textarea>
+
+<textarea class="textArea" name="aboutUser" [(ngModel)]="aboutUser"></textarea>
 <br/>
 <button type="saveButton" name="saveButton" class="btn btn-sm btn-info" (click)="saveAboutUser(aboutUser)">Save</button>
-
+</div>
 </div>
 </div>
