@@ -22,7 +22,3 @@ All the data from front-end is routed to the services module and then to the bac
 All the components have their own functionality whose details can be seen their respective component.ts files.
 
 You can also install Robo3T to see the structure of the schema and view the data being saved as and when you use the application.
-
-
-
-
